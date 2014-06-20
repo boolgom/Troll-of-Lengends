@@ -1,7 +1,5 @@
 from django.conf.urls import patterns, include, url
 
-from django.contrib import admin
-
 urlpatterns = patterns('trolloflegends.apps',
     # Examples:
     # url(r'^$', 'trolloflegends.views.home', name='home'),
