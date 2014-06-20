@@ -17,7 +17,5 @@ class Report(models.Model):
     user = models.ForeignKey(User, related_name='reports')
     content = models.TextField()
     written_time = models.DateTimeField(auto_now_add=True)
-    num_votes = models.IntegerField(default=0)
-    voters = models.ManyToManyField(User, related_name='voted_reports', null=True, blank=True)
     parent = models.ManyToManyField('Trolling', related_name='comments')
 
