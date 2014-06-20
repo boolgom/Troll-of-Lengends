@@ -8,5 +8,10 @@
 {% block body %}
 <div data-ng-controller="IndexControl" data-ng-init="init()">
     [[troll]]
+    <input ng-model="username"></input>
+    <input ng-model="password" type="password"></input>
+    <button ng-click="register_user()">signup</button>
+    <button ng-click="login()">login</button>
+    <button ng-click="logout()">logout</button>
 </div>
 {% endblock %}

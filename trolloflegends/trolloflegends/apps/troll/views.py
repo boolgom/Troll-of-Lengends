@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 import json
 
 
@@ -43,13 +44,16 @@ def register_user(request):
             data = json.loads(request.body)
             username = data['username']
             password = data['password']
-            user = User.objects.create_user(username=username, email=None, password=password)
+            print username
+            print password
+            user = User.objects.create_user(username=username,
+                                            email=None, password=password)
             user.save()
             user = authenticate(username=username, password=password)
             login(request, user)
             return HttpResponse(user.username)
     except:
-        return HttpResponseBadReqeust("failed to register")
+        return HttpResponseBadRequest("failed to register")
 
 
 def get_user(request):
