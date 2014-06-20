@@ -7,11 +7,22 @@
 {% endblock%}
 {% block body %}
 <div data-ng-controller="IndexControl" data-ng-init="init()">
-    [[troll]]
-    <input ng-model="username"></input>
-    <input ng-model="password" type="password"></input>
-    <button ng-click="register_user()">signup</button>
-    <button ng-click="login()">login</button>
-    <button ng-click="logout()">logout</button>
+    [[user.username]]
+    <div ng-hide="user">
+        <input ng-model="newUsername"></input>
+        <input ng-model="newPassword" type="password"></input>
+        <button ng-click="register_user()">signup</button><br>
+        <input ng-model="username"></input>
+        <input ng-model="password" type="password"></input>
+        <button ng-click="login()">login</button>
+    </div>
+    <div ng-show="user">
+        <button ng-click="logout()">logout</button>
+    </div>
+    <br>
+    <div ng-show="user">
+        <input ng-model="content"></input>
+        <button ng-click="upload()">upload</button>
+    </div>
 </div>
 {% endblock %}
