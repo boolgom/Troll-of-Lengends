@@ -102,3 +102,9 @@ def get_trollings(request):
     list_json = json.dumps(output, ensure_ascii=False, indent=4, cls=DjangoJSONEncoder)
 
     return HttpResponse(list_json)
+
+
+# for testing front-end
+
+def front_end(request):
+    return render(request, 'main.html')

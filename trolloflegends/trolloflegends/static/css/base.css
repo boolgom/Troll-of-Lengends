@@ -1,0 +1,24 @@
+::selection{
+}
+::-moz-selection{
+}
+*{
+    margin:0;
+    padding:);
+    display:block;
+    overflow:hidden;
+    box-sizing:border-box;
+
+    -moz-box-sizing:border-box;
+}
+script, title, style{
+    display:none;
+}
+a{
+    text-decoration:none;
+}
+button{
+    border:0;
+    outline:none;
+    background:none;
+}
