@@ -10,7 +10,7 @@ class Trolling(models.Model):
     voters = models.ManyToManyField(User, related_name='voted_trollings', null=True, blank=True)
     latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
     longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
-    location = models.Charfield(length=100, null=True, blank=True)
+    location = models.CharField(max_length=100, null=True, blank=True)
     image = models.ImageField(upload_to='images', null=True, blank=True)
 
 class Report(models.Model):
@@ -19,3 +19,6 @@ class Report(models.Model):
     written_time = models.DateTimeField(auto_now_add=True)
     parent = models.ManyToManyField('Trolling', related_name='comments')
 
+class UserProfile(models.Model):
+    profile = models.ImageField(upload_to='profiles', null=True, blank=True)
+    user = models.OneToOneField(User, related_name='profile')
