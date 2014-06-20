@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 {% block css %}
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/index.css">
 {% endblock %}
 {% block js %}
+<script type="text/javascript" src="{{STATIC_URL}}js/controller/index.js"></script>
 {% endblock%}
 {% block body %}
-Hello, World!
+<div data-ng-controller="IndexControl" data-ng-init="init()">
+    [[troll]]
+</div>
 {% endblock %}
