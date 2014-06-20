@@ -10,9 +10,10 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$', include('trolloflegends.apps.troll.urls')),
-    url(r'^login/$', 'trolloflegends.apps.troll.views.login'),
+    url(r'^login/$', 'trolloflegends.apps.troll.views.login_user'),
     url(r'^logout/$', 'trolloflegends.apps.troll.views.logout_user'),
-    
+    url(r'^getuser/$', 'trolloflegends.apps.troll.views.get_user'),
+
     # Media path
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+import json
 
 
 # Create your views here.
@@ -9,13 +10,15 @@ from django.contrib.auth import authenticate, login, logout
 def index(request):
     return render(request, 'index.html')
 
-def login(request):
+
+def login_user(request):
     try:
         if request.user.is_authenticated():
             return HttpResponseBadRequest("you have already logged in.")
         else:
-            username = request.POST['username']
-            password = request.POST['password']
+            data = json.loads(request.body)
+            username = data['username']
+            password = data['password']
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
@@ -25,11 +28,14 @@ def login(request):
     except:
         return HttpResponseBadRequest("inappropriate request.")
 
+
 @login_required
 def logout_user(request):
     logout(request)
-
-    if request.GET:
-        next = request.GET['next']
-
     return render(request, 'index.html')
+
+
+def get_user(request):
+    response_data = {'username': request.user.username}
+    return HttpResponse(json.dumps(response_data),
+                        content_type="application/json")

@@ -1,11 +1,11 @@
 angular.module('Troll', [])
-.config(['$httpProvider', '$http'], function ($interpolateProvider, $httpProvider, $http) {
+.config(function ($interpolateProvider, $httpProvider) {
     $interpolateProvider.startSymbol('[[').endSymbol(']]');
 
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 })
-.controller('IndexControl', ['$scope', function($scope) {
+.controller('IndexControl', ['$scope', '$http', function($scope, $http) {
     scope = $scope;
 
     $scope.init = function () {
@@ -13,14 +13,31 @@ angular.module('Troll', [])
     };
 
     $scope.login = function () {
-        $http.post('/login', {}).
+        $http.post('/login/', {
+            username: 'boolgom',
+            password: 'boolgom'
+        }).
             success(function(data, status, headers, config) {
-            // this callback will be called asynchronously
-            // when the response is available
         }).
             error(function(data, status, headers, config) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
+        });
+    };
+
+    $scope.logout = function () {
+        $http.post('/logout/').
+            success(function(data, status, headers, config) {
+        }).
+            error(function(data, status, headers, config) {
+        });
+    };
+
+    $scope.get_user = function () {
+        $http.get('/getuser/').
+            success(function(data, status, headers, config) {
+            console.log(data);
+        }).
+            error(function(data, status, headers, config) {
+            console.log(data);
         });
     };
 
