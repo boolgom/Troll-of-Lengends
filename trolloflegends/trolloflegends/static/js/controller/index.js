@@ -13,6 +13,7 @@ angular.module('Troll', [])
 
     $scope.init = function () {
         $scope.get_user();
+        $scope.get_trollings();
     };
 
     $scope.login = function () {
@@ -28,9 +29,10 @@ angular.module('Troll', [])
     };
 
     $scope.logout = function () {
-        $http.post('/logout/').
+        $http.get('/logout/').
             success(function(data, status, headers, config) {
             $scope.user = null;
+            console.log('a');
         }).
             error(function(data, status, headers, config) {
         });
@@ -39,7 +41,8 @@ angular.module('Troll', [])
     $scope.get_user = function () {
         $http.get('/getuser/').
             success(function(data, status, headers, config) {
-            $scope.user = data;
+            if (data.username)
+                $scope.user = data;
         }).
             error(function(data, status, headers, config) {
         });
@@ -62,6 +65,16 @@ angular.module('Troll', [])
         }).
             success(function(data, status, headers, config) {
             alert('sucksexx!!!')
+        }).
+            error(function(data, status, headers, config) {
+        });
+    };
+
+    $scope.get_trollings = function () {
+        $http.get('/get_trollings/'
+        ).
+            success(function(data, status, headers, config) {
+            $scope.trolls = data;
         }).
             error(function(data, status, headers, config) {
         });

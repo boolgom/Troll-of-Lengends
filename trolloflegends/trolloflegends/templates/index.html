@@ -24,5 +24,8 @@
         <input ng-model="content"></input>
         <button ng-click="upload()">upload</button>
     </div>
+    <ul ng-repeat="troll in trolls">
+        <li>[[troll.content]]</li>
+    </ul>
 </div>
 {% endblock %}
