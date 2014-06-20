@@ -13,6 +13,7 @@ angular.module('Troll', [])
 
     $scope.init = function () {
         $scope.get_user();
+        $scope.get_trollings();
     };
 
     $scope.login = function () {
@@ -64,6 +65,16 @@ angular.module('Troll', [])
         }).
             success(function(data, status, headers, config) {
             alert('sucksexx!!!')
+        }).
+            error(function(data, status, headers, config) {
+        });
+    };
+
+    $scope.get_trollings = function () {
+        $http.get('/get_trollings/'
+        ).
+            success(function(data, status, headers, config) {
+            $scope.trolls = data;
         }).
             error(function(data, status, headers, config) {
         });

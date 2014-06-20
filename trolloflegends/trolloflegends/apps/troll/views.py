@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from trolloflegends.apps.troll.models import Trolling
 import json
+from django.core.serializers.json import DjangoJSONEncoder
 
 
 # Create your views here.
@@ -76,3 +77,27 @@ def write_trolling(request):
     trolling.save()
 
     return HttpResponse("write trolling success")
+
+
+def get_trollings(request):
+    trolling_list = []
+    print trolling_list
+    print Trolling.objects.all()
+    for trolling in Trolling.objects.all():
+        trolling_obj = {
+            'id': trolling.id,
+            'content': trolling.content,
+            'user': trolling.user.username,
+            'datetime': trolling.written_time,
+            'num_votes': trolling.num_votes,
+            'location': trolling.location,
+            'latitude': trolling.latitude,
+            'longitude': trolling.longitude,
+        }
+        trolling_list.append(trolling_obj)
+        print trolling_obj
+
+    list_json = json.dumps(trolling_list, ensure_ascii=False, indent=4,
+                           cls=DjangoJSONEncoder)
+
+    return HttpResponse(list_json)
