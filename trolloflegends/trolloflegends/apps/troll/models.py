@@ -13,11 +13,17 @@ class Trolling(models.Model):
     location = models.CharField(max_length=100, null=True, blank=True)
     image = models.ImageField(upload_to='images', null=True, blank=True)
 
+    def __unicode__(self):
+        return self.content
+
 class Report(models.Model):
     user = models.ForeignKey(User, related_name='reports')
     content = models.TextField()
     written_time = models.DateTimeField(auto_now_add=True)
     parent = models.ManyToManyField('Trolling', related_name='comments')
+
+    def __unicode__(self):
+        return self.content
 
 class UserProfile(models.Model):
     profile = models.ImageField(upload_to='profiles', null=True, blank=True)
