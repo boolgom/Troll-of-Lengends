@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from trolloflegends.apps.troll.models import Trolling
 import json
 
 
@@ -35,7 +36,7 @@ def login_user(request):
 @login_required
 def logout_user(request):
     logout(request)
-    return render(request, 'index.html')
+    return HttpResponse('success')
 
 
 def register_user(request):
@@ -68,10 +69,10 @@ def get_user(request):
 def write_trolling(request):
     data = json.loads(request.body)
     content = data['content']
-    trolling = Trolling (
-        user = request.user,
-        content = content,
+    trolling = Trolling(
+        user=request.user,
+        content=content,
     )
     trolling.save()
-    
+
     return HttpResponse("write trolling success")

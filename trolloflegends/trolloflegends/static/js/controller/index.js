@@ -28,9 +28,10 @@ angular.module('Troll', [])
     };
 
     $scope.logout = function () {
-        $http.post('/logout/').
+        $http.get('/logout/').
             success(function(data, status, headers, config) {
             $scope.user = null;
+            console.log('a');
         }).
             error(function(data, status, headers, config) {
         });
@@ -39,7 +40,8 @@ angular.module('Troll', [])
     $scope.get_user = function () {
         $http.get('/getuser/').
             success(function(data, status, headers, config) {
-            $scope.user = data;
+            if (data.username)
+                $scope.user = data;
         }).
             error(function(data, status, headers, config) {
         });
