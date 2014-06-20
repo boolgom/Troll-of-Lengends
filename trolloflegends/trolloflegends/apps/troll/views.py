@@ -23,7 +23,9 @@ def login_user(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return HttpResponse(user.username)
+                response_data = {'username': request.user.username}
+                return HttpResponse(json.dumps(response_data),
+                                    content_type="application/json")
             else:
                 return HttpResponseBadRequest("inappropriate id or pw.")
     except:

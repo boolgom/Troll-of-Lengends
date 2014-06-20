@@ -12,7 +12,7 @@ angular.module('Troll', [])
     $scope.password = '';
 
     $scope.init = function () {
-        $scope.troll = "fuckyou";
+        $scope.get_user();
     };
 
     $scope.login = function () {
@@ -21,6 +21,7 @@ angular.module('Troll', [])
             password: $scope.password
         }).
             success(function(data, status, headers, config) {
+            $scope.user = data;
         }).
             error(function(data, status, headers, config) {
         });
@@ -29,6 +30,7 @@ angular.module('Troll', [])
     $scope.logout = function () {
         $http.post('/logout/').
             success(function(data, status, headers, config) {
+            $scope.user = null;
         }).
             error(function(data, status, headers, config) {
         });
@@ -37,19 +39,29 @@ angular.module('Troll', [])
     $scope.get_user = function () {
         $http.get('/getuser/').
             success(function(data, status, headers, config) {
-            console.log(data);
+            $scope.user = data;
         }).
             error(function(data, status, headers, config) {
-            console.log(data);
         });
     };
 
     $scope.register_user = function () {
         $http.post('/register/', {
-            username: $scope.username,
-            password: $scope.password
+            username: $scope.newUsername,
+            password: $scope.newPassword
         }).
             success(function(data, status, headers, config) {
+        }).
+            error(function(data, status, headers, config) {
+        });
+    };
+
+    $scope.upload = function () {
+        $http.post('/write_trolling/', {
+            content: $scope.content
+        }).
+            success(function(data, status, headers, config) {
+            alert('sucksexx!!!')
         }).
             error(function(data, status, headers, config) {
         });
