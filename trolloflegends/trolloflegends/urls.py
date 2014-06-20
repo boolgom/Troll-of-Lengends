@@ -11,7 +11,7 @@ urlpatterns = patterns('',
 
     url(r'^$', include('trolloflegends.apps.troll.urls')),
     url(r'^login/$', 'trolloflegends.apps.troll.views.login'),
-    url(4'^logout/$', 'trolloflegends.apps.troll.views.logout'),
+    url(r'^logout/$', 'trolloflegends.apps.troll.views.logout_user'),
     
     # Media path
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
