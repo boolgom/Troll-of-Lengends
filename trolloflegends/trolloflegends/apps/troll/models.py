@@ -10,6 +10,7 @@ class Trolling(models.Model):
     voters = models.ManyToManyField(User, related_name='voted_trollings', null=True, blank=True)
     latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
     longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+    location = models.Charfield(length=100, null=True, blank=True)
     image = models.ImageField(upload_to='images', null=True, blank=True)
 
 class Report(models.Model):
