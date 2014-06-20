@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta name="description" content="Troll of Legends, powered by 2014 SPRING KAKAO-KAIST Hackaton">
         <meta name="keywords" content="kaist, sparcs, troll of legends, complaints, newsfeed">
-        <meta name="author" content="Jonghyuk Jung, heretor92@gmail.com; ChangWon Lee, chiyah92@gmail.com, Kyumin Sim, kyumin92@gmail.com">
+        <meta name="author" content="Jonghyuk Jung, heretor92@gmail.com, ChangWon Lee, chiyah92@gmail.com, Kyumin Sim, kyumin92@gmail.com">
         <!-- STYLE SHEETS -->
         <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/base.css">
         {% block css %}{% endblock %}
@@ -16,7 +16,22 @@
         {% csrf_token %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div id="wrapper-header">
+            <header id="header">
+                <h1 id="logo">Troll of Legends</h1>
+                <ul id="menu">
+                    <li class="menu-story"><a href="#" class="sel">트롤 이야기</a></li>
+                    <li class="menu-map"><a href="#">트롤링 지도</a></li>
+                    <li class="menu-static"><a href="#">트롤링 통계</a></li>
+                </ul>
+                <button id="login">로그인</button>
+            </header>
+        </div>
+        <div id="wrapper-body">
+            <div id="body">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
     </body>
 </html>
 

@@ -1,15 +1,30 @@
+/* FONT */
+
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+/* BASE CSS */
+
 ::selection{
 }
 ::-moz-selection{
 }
 *{
     margin:0;
-    padding:);
+    padding:0;
     display:block;
     overflow:hidden;
     box-sizing:border-box;
 
     -moz-box-sizing:border-box;
+
+    font-family:"Nanum Gothic", sans-serif;
+    font-weight:400;
+
+    /* for better rendering */
+    text-rendering:optimizingLegibility;
+    text-shadow:0 0 1px rgba(0,0,0,0.05);
+    -webkit-text-stroke:0.1px;
+    -webkit-font-smoothing:subpixel-antialiased;
 }
 script, title, style{
     display:none;
@@ -21,4 +36,88 @@ button{
     border:0;
     outline:none;
     background:none;
+}
+
+
+/* HEADER */
+
+#wrapper-header{
+    width:100%;
+    height:80px;
+    background:#303032;
+}
+#header{
+    width:800px;
+    height:100%;
+    margin:0 auto;
+}
+#header h1{
+    height:40px;
+    font-size:17px;
+    font-weight:500;
+    padding-left:44px;
+    background:url("/media/res/img_logo.png") left 50% no-repeat;
+    float:left;
+    line-height:40px;
+    color:#f2f2f2;
+    margin:20px 20px 0 0;
+}
+#header #menu{
+    float:left;
+}
+#header #menu>li{
+    float:left;
+}
+#header #menu>li:before{
+    content:"";
+    background:url("/media/res/bg_menu_deco.png") 0 0 no-repeat;
+    width:1px;
+    height:10px;
+    margin:35px 0;
+    display:block;
+    float:left;
+}
+#header #menu>li a{
+    font-size:15px;
+    color:rgba(255,255,255,0.4);
+    margin:0 12px;
+    float:left;
+    line-height:80px;
+    padding:0 8px;
+}
+#header #menu>li a:hover{
+    color:#fff;
+}
+#header #menu>li a.sel{
+    color:#fff;
+    background:url("/media/res/bg_menu_sel_deco.png") 50% bottom no-repeat;
+    cursor:default;
+}
+#header #login{
+    border-radius:4px;
+    background:#e25740;
+    font-size:16px;
+    color:#fff;
+    line-height:36px;
+    padding:0 16px;
+    float:right;
+    margin-top:22px;
+    cursor:pointer;
+}
+#header #login:hover{
+    background:#d14630;
+}
+
+
+/* BODY WRAPPER */
+
+#wrapper-body{
+    width:100%;
+    height:100%;
+    background:#eeeeee;
+    padding-bottom:100px;
+}
+#body{
+    width:800px;
+    margin:20px auto;
 }
