@@ -60,3 +60,16 @@ def get_user(request):
     response_data = {'username': request.user.username}
     return HttpResponse(json.dumps(response_data),
                         content_type="application/json")
+
+
+@login_required
+def write_trolling(request):
+    data = json.loads(request.body)
+    content = data['content']
+    trolling = Trolling (
+        user = request.user,
+        content = content,
+    )
+    trolling.save()
+    
+    return HttpResponse("write trolling success")

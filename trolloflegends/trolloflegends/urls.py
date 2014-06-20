@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$', include('trolloflegends.apps.troll.urls')),
+    url(r'^write_trolling/$', 'trolloflegends.apps.troll.views.write_trolling'),
     url(r'^login/$', 'trolloflegends.apps.troll.views.login_user'),
     url(r'^logout/$', 'trolloflegends.apps.troll.views.logout_user'),
     url(r'^register/$', 'trolloflegends.apps.troll.views.register_user'),
