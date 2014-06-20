@@ -23,7 +23,7 @@ def login(request):
         return HttpResponseBadRequest("inappropriate request.")
 
 @login_required
-def logout_user(request):
+def logout(request):
     logout(request)
     next = ""
 
