@@ -35,6 +35,23 @@ def logout_user(request):
     return render(request, 'index.html')
 
 
+def register_user(request):
+    try:
+        if request.user.is_authenticated():
+            return HttpResponseBadRequest("you have already registered")
+        else:
+            data = json.loads(request.body)
+            username = data['username']
+            password = data['password']
+            user = User.objects.create_user(username=username, email=None, password=password)
+            user.save()
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return HttpResponse(user.username)
+    except:
+        return HttpResponseBadReqeust("failed to register")
+
+
 def get_user(request):
     response_data = {'username': request.user.username}
     return HttpResponse(json.dumps(response_data),
