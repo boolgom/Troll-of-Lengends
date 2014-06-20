@@ -8,7 +8,7 @@ class TrollingAdmin(admin.ModelAdmin):
     ordering = ('id',)
 
 class ReportAdmin(admin.ModelAdmin):
-    list_display = ('id', 'content', 'user', 'num_votes',)
+    list_display = ('id', 'content', 'user',)
     ordering = ('id',)
 
 admin.site.register(Trolling, TrollingAdmin)
