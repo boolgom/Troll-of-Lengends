@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^write_report/$', 'trolloflegends.apps.troll.views.write_report'),
     url(r'^get_trollings/$', 'trolloflegends.apps.troll.views.get_trollings'),
     url(r'^vote_trolling/$', 'trolloflegends.apps.troll.views.vote_trolling'),
+    url(r'^statistics/$', 'trolloflegends.apps.troll.views.statistics'),
 
     # Media path
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),

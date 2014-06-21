@@ -213,6 +213,7 @@
     margin:0 auto;
     padding:0 16px 16px 16px;
     cursor:pointer;
+    display:none;
 }
 .t-item-comments-more input{
     background:#fff;

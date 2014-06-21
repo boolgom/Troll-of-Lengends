@@ -13,7 +13,7 @@ angular.module('Troll', [])
     $scope.isLoginOpen = false;
     $scope.isWriteOpen = false;
     $scope.sortState = '';
-    $scope.url = 'main';
+    $scope.url = "statistics";
 
     $scope.init = function () {
         $scope.get_user();
@@ -27,7 +27,6 @@ angular.module('Troll', [])
         }).success(function(data, status, headers, config) {
             $scope.user = data;
             $scope.isLoginOpen = false;
-            $scope.get_trollings();
         }).error(function(data, status, headers, config) {
         });
     };
@@ -73,14 +72,7 @@ angular.module('Troll', [])
         $http.post('/vote_trolling/', {
             trolling: $scope.trolls[index].id
         }).success(function(data, status, headers, config) {
-            if ($scope.trolls[index].isVote) {
-                $scope.trolls[index].num_votes -= 1;
-                $scope.trolls[index].isVote = '';
-            } else {
-                $scope.trolls[index].num_votes += 1;
-                $scope.trolls[index].isVote = 'true';
-
-            }
+            $scope.trolls[index].num_votes += 1;
         }).error(function(data, status, headers, config) {
         });
     };
