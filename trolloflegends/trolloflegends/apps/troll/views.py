@@ -14,6 +14,10 @@ def index(request):
     return render(request, 'main.html')
 
 
+def statistics(request):
+    return render(request, 'statistics.html')
+
+
 def login_user(request):
     try:
         if request.user.is_authenticated():
@@ -99,6 +103,9 @@ def write_report(request):
 def get_trollings(request):
     trolling_list = []
     for trolling in Trolling.objects.all():
+        isVote = ''
+        if request.user in trolling.voters.all():
+            isVote = 'true'
         trolling_obj = {
             'id': trolling.id,
             'content': trolling.content,
@@ -108,6 +115,7 @@ def get_trollings(request):
             'location': trolling.location,
             'latitude': trolling.latitude,
             'longitude': trolling.longitude,
+            'isVote': isVote
         }
 
         report_list = []

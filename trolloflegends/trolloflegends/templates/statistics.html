@@ -3,10 +3,10 @@
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/main.css">
 {% endblock %}
 {% block js %}
-<script type="text/javascript" src="{{STATIC_URL}}js/controller/index.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/controller/statistics.js"></script>
 {% endblock %}
 {% block body %}
-<div id="body">
+<div id="body" data-ng-controller="IndexControl" data-ng-init="init()">
     <div class="sort-button">
         <button class="sort-heart" ng-click="sortState='vote'" ng-class="{sel:sortState=='vote'}">
             <span>36</span>
@@ -33,7 +33,7 @@
                 <button class="t-item-place">사랑관 4층 화장실</button>
             </div>
             <div class="t-item-interaction">
-                <button class="t-item-add-heart" ng-class="{sel:troll.isVote&&user}" ng-click="doVote($index)"><span>[[troll.num_votes]]명</span></button>
+                <button class="t-item-add-heart sel" ng-click="doVote($index)"><span>[[troll.num_votes]]명</span></button>
                 <button class="t-item-see-comment"><span>[[troll.reports.length]]명</span></button>
             </div>
             <div class="t-item-comments">
@@ -72,7 +72,7 @@
                 <button class="t-item-place">사랑관 4층 화장실</button>
             </div>
             <div class="t-item-interaction">
-                <button class="t-item-add-heart" ng-class="{sel:troll.isVote&&user}" ng-click="doVote($index)"><span>[[troll.num_votes]]명</span></button>
+                <button class="t-item-add-heart sel" ng-click="doVote($index)"><span>[[troll.num_votes]]명</span></button>
                 <button class="t-item-see-comment"><span>[[troll.reports.length]]명</span></button>
             </div>
             <div class="t-item-comments">
@@ -93,7 +93,7 @@
             </div>
             <div class="t-item-comments-more">
                 <button class="comment-item-more">코멘트 더보기</button>
-                <input type="text" placeholder="댓글을 입력하고 엔터를 치세요." ng-show="user" ng-model="troll.newReport" ng-keyup="writeReport(troll, $event)"></input>
+                <input type="text" placeholder="댓글을 입력하고 엔터를 치세요." ng-model="troll.newReport" ng-keyup="writeReport(troll, $event)"></input>
             </div>
             </li>
         </ul>
