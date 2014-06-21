@@ -137,12 +137,16 @@ def vote_trolling(request):
     trolling = Trolling.objects.get(id=trolling)
 
     if user in trolling.voters.all():
-        return HttpResponseBadRequest("already voted")
+        trolling.voters.remove(user)
+        trolling.num_votes -= 1
+        trolling.save()
+        return HttpResponse("unvote successful")
     else:
         trolling.voters.add(user)
         trolling.num_votes += 1
         trolling.save()
         return HttpResponse("vote successful")
+
 
 
 # for testing front-end
