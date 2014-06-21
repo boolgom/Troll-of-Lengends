@@ -114,6 +114,7 @@ def get_trollings(request):
         for report in trolling.comments.all():
             report_obj = {
                 'id': report.id,
+                'username': report.user.username,
                 'content': report.content,
                 'datetime': report.written_time
             }
@@ -133,14 +134,14 @@ def vote_trolling(request):
     data = json.loads(request.body)
     user = User.objects.get(id=request.user.id)
     trolling = data['trolling']
-    trolling_obj = Trolling.objects.get(id=trolling)
+    trolling = Trolling.objects.get(id=trolling)
 
     if user in trolling.voters.all():
         return HttpResponseBadRequest("already voted")
     else:
-        comment.voters.add(user)
-        comment.num_votes += 1
-        comment.save()
+        trolling.voters.add(user)
+        trolling.num_votes += 1
+        trolling.save()
         return HttpResponse("vote successful")
 
 

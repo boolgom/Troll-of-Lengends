@@ -12,6 +12,7 @@ angular.module('Troll', [])
     $scope.password = '';
     $scope.isLoginOpen = false;
     $scope.isWriteOpen = false;
+    $scope.sortState = '';
 
     $scope.init = function () {
         $scope.get_user();
@@ -60,19 +61,33 @@ angular.module('Troll', [])
             content: $scope.content
         }).success(function(data, status, headers, config) {
             $scope.isWriteOpen = false;
+            $scope.get_trollings();
         }).error(function(data, status, headers, config) {
         });
     };
 
-    $scope.writeReport = function (index, event) {
+    $scope.doVote = function (index) {
+        $http.post('/vote_trolling/', {
+            trolling: $scope.trolls[index].id
+        }).success(function(data, status, headers, config) {
+            $scope.trolls[index].num_votes += 1;
+        }).error(function(data, status, headers, config) {
+        });
+    };
+
+    $scope.writeReport = function (troll, event) {
         if (event.keyCode != 13)
             return;
         $http.post('/write_report/', {
-            content: $scope.trolls[index].newReport,
-            trolling: $scope.trolls[index].id
+            content: troll.newReport,
+            trolling: troll.id
         }).success(function(data, status, headers, config) {
-            $scope.isWriteOpen = false;
-            $scope.get_trollings();
+            troll.reports.push({
+                user: $scope.user,
+                content: troll.newReport,
+                datetime: new Date()
+            });
+            troll.newReport = '';
         }).error(function(data, status, headers, config) {
         });
     };
@@ -89,6 +104,17 @@ angular.module('Troll', [])
         $scope.isLoginOpen = false;
         $scope.isWriteOpen = false;
         $scope.isSigninOpen = false;
+    };
+
+    $scope.sortFunc = function (troll) {
+        var sortState = $scope.sortState;
+        if (sortState == "vote") {
+            return -troll.num_votes;
+        } else if (sortState == "time") {
+            return -(new Date(troll.datetime).getTime());
+        } else {
+            return -troll.reports.length;
+        }
     };
 
 }]);

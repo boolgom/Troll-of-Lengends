@@ -7,24 +7,24 @@
 {% endblock %}
 {% block body %}
 <div class="sort-button">
-    <button class="sort-heart sel">
+    <button class="sort-heart" ng-click="sortState='vote'" ng-class="{sel:sortState=='vote'}">
         <span>36</span>
     </button>
-    <button class="sort-time">
+    <button class="sort-time" ng-click="sortState='time'" ng-class="{sel:sortState=='time'}">
         <span>214</span>
     </button>
-    <button class="sort-comment">
+    <button class="sort-comment" ng-click="sortState='comment'" ng-class="{sel:sortState=='comment'}">
         <span>5</span>
     </button>
 </div>
 <div class="trolling-list">
     <ul class="trolling-list-left">
-        <li class="trolling-item" data-ng-repeat="troll in trolls" ng-show="$even">
+        <li class="trolling-item" data-ng-repeat="troll in trolls | orderBy : sortFunc" ng-show="$even">
             <div class="t-item-header">
                 <h3 class="t-item-user">
                     <img src="{{MEDIA_URL}}res/img_test_profile_01.png"><span>[[troll.user]]</span>
                 </h3>
-                <div class="t-item-date">[[troll.datetime]]</div>
+                <div class="t-item-date">[[troll.datetime | date:'yyyy-MM-dd HH:mm:ss']]</div>
                 <button class="t-item-link">링크 복사</button>
             </div>
             <div class="t-item-content">
@@ -32,8 +32,8 @@
                 <button class="t-item-place">사랑관 4층 화장실</button>
             </div>
             <div class="t-item-interaction">
-                <button class="t-item-add-heart sel"><span>48명</span></button>
-                <button class="t-item-see-comment"><span>7명</span></button>
+                <button class="t-item-add-heart sel" ng-click="doVote($index)"><span>[[troll.num_votes]]명</span></button>
+                <button class="t-item-see-comment"><span>[[troll.reports.length]]명</span></button>
             </div>
             <div class="t-item-comments">
                 <div class="t-item-comment-item" data-ng-repeat="report in troll.reports">
@@ -43,27 +43,27 @@
                     <div class="comment-item-content">
                         <div class="comment-item-paragraph">
                             <b class="comment-item-username">Sunguard</b>
-                            격하게 공감하는 바입니다!!!!
+                            [[report.content]]
                         </div>
                         <div class="comment-item-date">
-                            2014년 5월 13일
+                            [[report.datetime | date:'yyyy-MM-dd HH:mm:ss']]
                         </div>
                     </div>
                 </div>
             </div>
             <div class="t-item-comments-more">
                 <button class="comment-item-more">코멘트 더보기</button>
-                <input type="text" placeholder="댓글을 입력하고 엔터를 치세요." ng-model="troll.newReport" ng-keyup="writeReport($index, $event)"></input>
+                <input type="text" placeholder="댓글을 입력하고 엔터를 치세요." ng-model="troll.newReport" ng-keyup="writeReport(troll, $event)"></input>
             </div>
         </li>
     </ul>
     <ul class="trolling-list-right">
-        <li class="trolling-item" data-ng-repeat="troll in trolls" ng-show="$odd">
+        <li class="trolling-item" data-ng-repeat="troll in trolls | orderBy : sortFunc : reverse" ng-show="$odd">
             <div class="t-item-header">
                 <h3 class="t-item-user">
                     <img src="{{MEDIA_URL}}res/img_test_profile_01.png"><span>[[troll.user]]</span>
                 </h3>
-                <div class="t-item-date">[[troll.datetime]]</div>
+                <div class="t-item-date">[[troll.datetime | date:'yyyy-MM-dd HH:mm:ss']]</div>
                 <button class="t-item-link">링크 복사</button>
             </div>
             <div class="t-item-content">
@@ -71,8 +71,8 @@
                 <button class="t-item-place">사랑관 4층 화장실</button>
             </div>
             <div class="t-item-interaction">
-                <button class="t-item-add-heart sel"><span>48명</span></button>
-                <button class="t-item-see-comment"><span>7명</span></button>
+                <button class="t-item-add-heart sel" ng-click="doVote($index)"><span>[[troll.num_votes]]명</span></button>
+                <button class="t-item-see-comment"><span>[[troll.reports.length]]명</span></button>
             </div>
             <div class="t-item-comments">
                 <div class="t-item-comment-item" data-ng-repeat="report in troll.reports">
@@ -82,17 +82,17 @@
                     <div class="comment-item-content">
                         <div class="comment-item-paragraph">
                             <b class="comment-item-username">Sunguard</b>
-                            격하게 공감하는 바입니다!!!!
+                            [[report.content]]
                         </div>
                         <div class="comment-item-date">
-                            2014년 5월 13일
+                            [[report.datetime | date:'yyyy-MM-dd HH:mm:ss']]
                         </div>
                     </div>
                 </div>
             </div>
             <div class="t-item-comments-more">
                 <button class="comment-item-more">코멘트 더보기</button>
-                <input type="text" placeholder="댓글을 입력하고 엔터를 치세요."></input>
+                <input type="text" placeholder="댓글을 입력하고 엔터를 치세요." ng-model="troll.newReport" ng-keyup="writeReport(troll, $event)"></input>
             </div>
         </li>
     </ul>
