@@ -40,9 +40,10 @@
                     <button class="popup-write-submit" ng-click="upload()">확인</button>
                 </h2>
                 <textarea class="popup-write-content" placeholder="웃픈 이야기를 풀어주세요!" ng-model="content"></textarea>
-                <button class="popup-write-add-place">위치 정보 추가하기</button>
+                <input type="text" placeholder="위치 정보 추가하기" ng-model="location" style="cursor:text" class="popup-write-add-place"></input>
                 <button class="popup-write-add-photo">사진 추가하기</button>
             </div>
+            <!--
             <div class="popup-map">
                 <h2 class="popup-map-title">
                     <span>트롤링 위치 선택하기</span>
@@ -50,6 +51,7 @@
                 </h2>
                 <img class="popup-map-image" src="{{MEDIA_URL}}res/campusmap.gif">
             </div>
+            -->
             {% block popup %}{% endblock %}
         </div>
         <div id="wrapper-header">

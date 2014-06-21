@@ -74,9 +74,11 @@ def get_user(request):
 def write_trolling(request):
     data = json.loads(request.body)
     content = data['content']
+    location = data['location']
     trolling = Trolling(
         user=request.user,
         content=content,
+        location=location
     )
     trolling.save()
 
@@ -154,7 +156,6 @@ def vote_trolling(request):
         trolling.num_votes += 1
         trolling.save()
         return HttpResponse("vote successful")
-
 
 
 # for testing front-end

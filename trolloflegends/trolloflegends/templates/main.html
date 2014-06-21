@@ -9,13 +9,13 @@
 <div id="body">
     <div class="sort-button">
         <button class="sort-heart" ng-click="sortState='vote'" ng-class="{sel:sortState=='vote'}">
-            <span>36</span>
+            <span>[[getMaxVote()]]</span>
         </button>
         <button class="sort-time" ng-click="sortState='time'" ng-class="{sel:sortState=='time'}">
-            <span>214</span>
+            <span>[[getMaxTime()]]</span>
         </button>
         <button class="sort-comment" ng-click="sortState='comment'" ng-class="{sel:sortState=='comment'}">
-            <span>5</span>
+            <span>[[getMaxReport()]]</span>
         </button>
     </div>
     <div class="trolling-list">
@@ -30,10 +30,10 @@
             </div>
             <div class="t-item-content">
                 [[troll.content]]
-                <button class="t-item-place">사랑관 4층 화장실</button>
+                <button class="t-item-place">[[troll.location]]</button>
             </div>
             <div class="t-item-interaction">
-                <button class="t-item-add-heart" ng-class="{sel:troll.isVote&&user}" ng-click="doVote($index)"><span>[[troll.num_votes]]명</span></button>
+                <button class="t-item-add-heart" ng-class="{sel:troll.isVote&&user}" ng-click="doVote(troll)"><span>[[troll.num_votes]]명</span></button>
                 <button class="t-item-see-comment"><span>[[troll.reports.length]]명</span></button>
             </div>
             <div class="t-item-comments">
@@ -43,7 +43,7 @@
                     </div>
                     <div class="comment-item-content">
                         <div class="comment-item-paragraph">
-                            <b class="comment-item-username">Sunguard</b>
+                            <b class="comment-item-username">[[report.username]]</b>
                             [[report.content]]
                         </div>
                         <div class="comment-item-date">
@@ -69,10 +69,10 @@
             </div>
             <div class="t-item-content">
                 [[troll.content]]
-                <button class="t-item-place">사랑관 4층 화장실</button>
+                <button class="t-item-place">[[troll.location]]</button>
             </div>
             <div class="t-item-interaction">
-                <button class="t-item-add-heart" ng-class="{sel:troll.isVote&&user}" ng-click="doVote($index)"><span>[[troll.num_votes]]명</span></button>
+                <button class="t-item-add-heart" ng-class="{sel:troll.isVote&&user}" ng-click="doVote(troll)"><span>[[troll.num_votes]]명</span></button>
                 <button class="t-item-see-comment"><span>[[troll.reports.length]]명</span></button>
             </div>
             <div class="t-item-comments">
@@ -82,7 +82,7 @@
                     </div>
                     <div class="comment-item-content">
                         <div class="comment-item-paragraph">
-                            <b class="comment-item-username">Sunguard</b>
+                            <b class="comment-item-username">[[report.username]]</b>
                             [[report.content]]
                         </div>
                         <div class="comment-item-date">

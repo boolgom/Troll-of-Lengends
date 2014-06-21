@@ -20,6 +20,31 @@ angular.module('Troll', [])
         $scope.get_trollings();
     };
 
+    $scope.getMaxVote = function () {
+        var max = 0;
+        for (var i in $scope.trolls) {
+            var a = $scope.trolls[i].num_votes;
+            if (a>max)
+                max = a;
+        }
+        return max;
+    };
+
+    $scope.getMaxTime = function () {
+        if ($scope.trolls)
+            return $scope.trolls.length;
+    };
+
+    $scope.getMaxReport = function () {
+        var max = 0;
+        for (var i in $scope.trolls) {
+            var a = $scope.trolls[i].reports.length;
+            if (a>max)
+                max = a;
+        }
+        return max;
+    };
+
     $scope.login = function () {
         $http.post('/login/', {
             username: $scope.username,

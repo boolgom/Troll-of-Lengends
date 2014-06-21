@@ -9,13 +9,13 @@
 <div id="body" data-ng-controller="IndexControl" data-ng-init="init()">
     <div class="sort-button">
         <button class="sort-heart" ng-click="sortState='vote'" ng-class="{sel:sortState=='vote'}">
-            <span>36</span>
+            <span>[[getMaxVote()]]</span>
         </button>
         <button class="sort-time" ng-click="sortState='time'" ng-class="{sel:sortState=='time'}">
-            <span>214</span>
+            <span>[[getMaxTime()]]</span>
         </button>
         <button class="sort-comment" ng-click="sortState='comment'" ng-class="{sel:sortState=='comment'}">
-            <span>5</span>
+            <span>[[getMaxReport()]]</span>
         </button>
     </div>
     <div class="trolling-list">

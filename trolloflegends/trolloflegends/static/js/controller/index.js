@@ -12,12 +12,37 @@ angular.module('Troll', [])
     $scope.password = '';
     $scope.isLoginOpen = false;
     $scope.isWriteOpen = false;
-    $scope.sortState = '';
+    $scope.sortState = 'vote';
     $scope.url = 'main';
 
     $scope.init = function () {
         $scope.get_user();
         $scope.get_trollings();
+    };
+
+    $scope.getMaxVote = function () {
+        var max = 0;
+        for (var i in $scope.trolls) {
+            var a = $scope.trolls[i].num_votes;
+            if (a>max)
+                max = a;
+        }
+        return max;
+    };
+
+    $scope.getMaxTime = function () {
+        if ($scope.trolls)
+        return $scope.trolls.length;
+    };
+
+    $scope.getMaxReport = function () {
+        var max = 0;
+        for (var i in $scope.trolls) {
+            var a = $scope.trolls[i].reports.length;
+            if (a>max)
+                max = a;
+        }
+        return max;
     };
 
     $scope.login = function () {
@@ -60,7 +85,8 @@ angular.module('Troll', [])
 
     $scope.upload = function () {
         $http.post('/write_trolling/', {
-            content: $scope.content
+            content: $scope.content,
+            location: $scope.location
         }).success(function(data, status, headers, config) {
             $scope.isWriteOpen = false;
             $scope.get_trollings();
@@ -69,16 +95,16 @@ angular.module('Troll', [])
         });
     };
 
-    $scope.doVote = function (index) {
+    $scope.doVote = function (troll) {
         $http.post('/vote_trolling/', {
-            trolling: $scope.trolls[index].id
+            trolling: troll.id
         }).success(function(data, status, headers, config) {
-            if ($scope.trolls[index].isVote) {
-                $scope.trolls[index].num_votes -= 1;
-                $scope.trolls[index].isVote = '';
+            if (troll.isVote) {
+                troll.num_votes -= 1;
+                troll.isVote = '';
             } else {
-                $scope.trolls[index].num_votes += 1;
-                $scope.trolls[index].isVote = 'true';
+                troll.num_votes += 1;
+                troll.isVote = 'true';
 
             }
         }).error(function(data, status, headers, config) {
@@ -86,14 +112,14 @@ angular.module('Troll', [])
     };
 
     $scope.writeReport = function (troll, event) {
-        if (event.keyCode != 13)
+        if (event.keyCode != 13 || !troll.newReport)
             return;
         $http.post('/write_report/', {
             content: troll.newReport,
             trolling: troll.id
         }).success(function(data, status, headers, config) {
             troll.reports.push({
-                user: $scope.user,
+                username: $scope.user.username,
                 content: troll.newReport,
                 datetime: new Date()
             });
