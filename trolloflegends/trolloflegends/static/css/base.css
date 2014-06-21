@@ -37,6 +37,13 @@ button{
     outline:none;
     background:none;
 }
+body{
+    background:#eeeeee;
+}
+html{
+    overflow:auto;
+}
+
 
 
 /* HEADER */
@@ -107,6 +114,21 @@ button{
 #header #login:hover{
     background:#d14630;
 }
+#header #register{
+    border-radius:4px;
+    background:#6a6a6a;
+    font-size:16px;
+    color:#fff;
+    line-height:36px;
+    padding:0 16px;
+    float:right;
+    margin-top:22px;
+    cursor:pointer;
+    margin-right:12px;
+}
+#header #register:hover{
+    background:#5a5a5a;
+}
 
 
 /* BODY WRAPPER */
@@ -120,4 +142,168 @@ button{
 #body{
     width:800px;
     margin:20px auto;
+}
+
+
+/* POPUP SECTION */
+
+#wrapper-popup{
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    position:absolute;
+    top:0;
+    left:0;
+}
+.popup-close{
+    width:100%;
+    height:100%;
+    background:transparent;
+    position:absolute;
+    top:0;
+    left:0;
+}
+.popup-login{
+    width:320px;
+    height:294px;
+    background:#fff;
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-top:-200px;
+    margin-left:-160px;
+    border-radius:4px;
+}
+.popup-login-title{
+    width:100%;
+    height:56px;
+    padding:16px 20px;
+    background:#15c2d2;
+    font-size:18px;
+    color:#fff;
+}
+.popup-login-label{
+    margin:16px;
+    font-size:15px;
+    color:#6f7375;
+    margin-bottom:8px;
+}
+.popup-login-field{
+    font-size:15px;
+    height:40px;
+    width:288px;
+    border-radius:1px;
+    border:1px solid #d7d8d9;
+    margin:0 auto;
+    color:#0e929e;
+    outline:none;
+    padding:8px;
+}
+.popup-login-field:focus{
+    border:1px solid #ffb400;
+    background:#fffaf2;
+}
+.popup-login-submit{
+    width:88px;
+    height:40px;
+    padding:10px 0;
+    text-align:center;
+    font-size:16px;
+    font-weight:400;
+    color:#fff;
+    background:#0e929e;
+    border:0;
+    border-radius:2px;
+    outline:none;
+    float:right;
+    cursor:pointer;
+    margin:20px 16px 0 0;
+}
+.popup-login-submit:hover{
+    background:#075a62;
+}
+
+/* POPUP - WRITE TROLLING */
+
+.popup-write{
+    width:500px;
+    height:410px;
+    background:#fff;
+    border-radius:4px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-top:-230px;
+    margin-left:-250px;
+}
+.popup-write-title>span{
+    width:444px;
+    height:56px;
+    background:#e25740;
+    color:#fff;
+    font-size:18px;
+    line-height:56px;
+    padding-left:16px;
+    float:left;
+}
+.popup-write-submit{
+    width:56px;
+    height:56px;
+    background:#b54330 url("/media/res/img_popup_write_submit.png") 50% 50% no-repeat;
+    text-indent:-9999px;
+    cursor:pointer;
+}
+.popup-write-submit:hover{
+    background-color:#903121;
+}
+.popup-write-content{
+    width:100%;
+    height:240px;
+    background:transparent;
+    border:none;
+    outline:none;
+    color:#414141;
+    font-size:18px;
+    line-height:24px;
+    padding:16px;
+}
+.popup-write-content:focus{
+    background:#fffef3;
+}
+.popup-write-add-place, .popup-write-add-photo{
+    width:100%;
+    height:56px;
+    border-top:1px solid #e5e5e5;
+    color:#8f8f8f;
+    font-size:18px;
+    line-height:56px;
+    padding-left:42px;
+    text-align:left;
+    cursor:pointer;
+}
+.popup-write-add-place{
+    background:#f7f7f7 url("/media/res/img_popup_write_add_place.png") 16px 50% no-repeat;
+}
+.popup-write-add-photo{
+    background:#f7f7f7 url("/media/res/img_popup_write_add_photo.png") 16px 50% no-repeat;
+}
+.popup-write-add-place:hover, .popup-write-add-photo:hover{
+    background-color:#eaeaea;
+    color:#5f5f5f;
+}
+
+
+/* POPUP HIDE CSS */
+
+#wrapper-popup{
+    display:none;
+}
+.popup-close{
+    display:none;
+}
+.popup-login{
+    display:none;
+}
+.popup-write{
+    display:none;
 }

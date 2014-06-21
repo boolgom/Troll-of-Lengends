@@ -16,6 +16,27 @@
         {% csrf_token %}
     </head>
     <body>
+        <div id="wrapper-popup">
+            <div class="popup-close"></div>
+            <div class="popup-login">
+                <h2 class="popup-login-title">환영합니다!</h2>
+                <label class="popup-login-label">아이디 :</label>
+                <input class="popup-login-field username"></input>
+                <label class="popup-login-label">비밀번호 : </label>
+                <input class="popup-login-field password"></input>
+                <button class="popup-login-submit">로그인</button>
+            </div>
+            <div class="popup-write">
+                <h2 class="popup-write-title">
+                    <span>트롤링 스토리 작성하기</span>
+                    <button class="popup-write-submit">확인</button>
+                </h2>
+                <textarea class="popup-write-content" placeholder="웃픈 이야기를 풀어주세요!"></textarea>
+                <button class="popup-write-add-place">위치 정보 추가하기</button>
+                <button class="popup-write-add-photo">사진 추가하기</button>
+            </div>
+            {% block popup %}{% endblock %}
+        </div>
         <div id="wrapper-header">
             <header id="header">
                 <h1 id="logo">Troll of Legends</h1>
@@ -25,6 +46,7 @@
                     <li class="menu-static"><a href="#">트롤링 통계</a></li>
                 </ul>
                 <button id="login">로그인</button>
+                <button id="register">회원가입</button>
             </header>
         </div>
         <div id="wrapper-body">
