@@ -5,6 +5,6 @@ urlpatterns = patterns('trolloflegends.apps',
     # url(r'^$', 'trolloflegends.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^$', 'troll.views.index'),
+    url(r'^$', 'troll.views.front_end'),
     url(r'^write_trolling/$', 'troll.views.write_trolling'),
 )

@@ -94,8 +94,18 @@ def get_trollings(request):
             'latitude': trolling.latitude,
             'longitude': trolling.longitude,
         }
+
+        report_list = []
+        for report in trolling.comments.all():
+            report_obj = {
+                'id': report.id,
+                'content': report.content,
+                'datetime': report.written_time
+            }
+            report_list.append(report_obj)
+        trolling_obj['reports'] = report_list
+
         trolling_list.append(trolling_obj)
-        print trolling_obj
 
     list_json = json.dumps(trolling_list, ensure_ascii=False, indent=4,
                            cls=DjangoJSONEncoder)
