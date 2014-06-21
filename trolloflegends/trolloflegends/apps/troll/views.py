@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from trolloflegends.apps.troll.models import Trolling
+from trolloflegends.apps.troll.models import Trolling, Report
 import json
 from django.core.serializers.json import DjangoJSONEncoder
 
@@ -84,6 +84,8 @@ def write_report(request):
     data = json.loads(request.body)
     content = data['content']
     trolling = data['trolling']
+    print trolling
+    print Trolling.objects.get(id=trolling)
     report = Report(
         user=request.user,
         content=content,
@@ -143,6 +145,7 @@ def vote_trolling(request):
 
 
 # for testing front-end
+
 
 def front_end(request):
     return render(request, 'main.html')

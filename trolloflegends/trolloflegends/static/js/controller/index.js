@@ -64,6 +64,19 @@ angular.module('Troll', [])
         });
     };
 
+    $scope.writeReport = function (index, event) {
+        if (event.keyCode != 13)
+            return;
+        $http.post('/write_report/', {
+            content: $scope.trolls[index].newReport,
+            trolling: $scope.trolls[index].id
+        }).success(function(data, status, headers, config) {
+            $scope.isWriteOpen = false;
+            $scope.get_trollings();
+        }).error(function(data, status, headers, config) {
+        });
+    };
+
     $scope.get_trollings = function () {
         $http.get('/get_trollings/'
         ).success(function(data, status, headers, config) {
