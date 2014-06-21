@@ -127,8 +127,20 @@ def get_trollings(request):
 
 
 @login_required
-def register_vote(request):
-    pass
+def vote_trolling(request):
+    data = json.loads(request.body)
+    user = User.objects.get(id=request.user.id)
+    trolling = data['trolling']
+    trolling_obj = Trolling.objects.get(id=trolling)
+
+    if user in trolling.voters.all():
+        return HttpResponseBadRequest("already voted")
+    else:
+        comment.voters.add(user)
+        comment.num_votes += 1
+        comment.save()
+        return HttpResponse("vote successful")
+
 
 # for testing front-end
 
