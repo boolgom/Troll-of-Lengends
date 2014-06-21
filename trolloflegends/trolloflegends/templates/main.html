@@ -19,7 +19,7 @@
 </div>
 <div class="trolling-list">
     <ul class="trolling-list-left">
-        <li class="trolling-item" data-ng-repeat="troll in trolls" ng-show="$odd">
+        <li class="trolling-item" data-ng-repeat="troll in trolls" ng-show="$even">
             <div class="t-item-header">
                 <h3 class="t-item-user">
                     <img src="{{MEDIA_URL}}res/img_test_profile_01.png"><span>CheolKung</span>
@@ -58,7 +58,7 @@
         </li>
     </ul>
     <ul class="trolling-list-right">
-        <li class="trolling-item" data-ng-repeat="troll in trolls" ng-show="$even">
+        <li class="trolling-item" data-ng-repeat="troll in trolls" ng-show="$odd">
             <div class="t-item-header">
                 <h3 class="t-item-user">
                     <img src="{{MEDIA_URL}}res/img_test_profile_01.png"><span>CheolKung</span>
