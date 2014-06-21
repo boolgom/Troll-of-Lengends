@@ -114,6 +114,20 @@ html{
 #header #login:hover{
     background:#d14630;
 }
+#header #logout{
+    border-radius:4px;
+    background:#e25740;
+    font-size:16px;
+    color:#fff;
+    line-height:36px;
+    padding:0 16px;
+    float:right;
+    margin-top:22px;
+    cursor:pointer;
+}
+#header #logout:hover{
+    background:#d14630;
+}
 #header #register{
     border-radius:4px;
     background:#6a6a6a;
@@ -128,6 +142,21 @@ html{
 }
 #header #register:hover{
     background:#5a5a5a;
+}
+#header #write{
+    border-radius:4px;
+    background:#0d4;
+    font-size:16px;
+    color:#fff;
+    line-height:36px;
+    padding:0 16px;
+    float:right;
+    margin-top:22px;
+    cursor:pointer;
+    margin-right:12px;
+}
+#header #write:hover{
+    background:#0c2;
 }
 
 
@@ -296,14 +325,14 @@ html{
 /* POPUP HIDE CSS */
 
 #wrapper-popup{
-    display:none;
+    z-index:26;
 }
 .popup-close{
-    display:none;
+    z-index:29;
 }
 .popup-login{
-    display:none;
+    z-index:92;
 }
 .popup-write{
-    display:none;
+    z-index:92;
 }

@@ -3,6 +3,7 @@
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/main.css">
 {% endblock %}
 {% block js %}
+<script type="text/javascript" src="{{STATIC_URL}}js/controller/index.js"></script>
 {% endblock %}
 {% block body %}
 <div class="sort-button">
@@ -18,7 +19,7 @@
 </div>
 <div class="trolling-list">
     <ul class="trolling-list-left">
-        <li class="trolling-item">
+        <li class="trolling-item" data-ng-repeat="troll in trolls" ng-show="$odd">
             <div class="t-item-header">
                 <h3 class="t-item-user">
                     <img src="{{MEDIA_URL}}res/img_test_profile_01.png"><span>CheolKung</span>
@@ -27,7 +28,7 @@
                 <button class="t-item-link">링크 복사</button>
             </div>
             <div class="t-item-content">
-                내용이 여기에 들어가게 되는데, 심규민 빨리 잡혀가야 되는데 왜 안 잡혀가냐. 이거 우리나라 이러다가 망하는 거 아닌가? 심히 걱정이 된다. ㅠㅠ
+                [[troll.content]]
                 <button class="t-item-place">사랑관 4층 화장실</button>
             </div>
             <div class="t-item-interaction">
@@ -46,99 +47,6 @@
                         </div>
                         <div class="comment-item-date">
                             2014년 5월 13일
-                        </div>
-                    </div>
-                </div>
-                <div class="t-item-comment-item">
-                    <div class="comment-item-user">
-                        <img src="{{MEDIA_URL}}res/img_test_profile_03.png">
-                    </div>
-                    <div class="comment-item-content">
-                        <div class="comment-item-paragraph">
-                            <b class="comment-item-username">가나다</b>
-                            대세는 심철컹철컹!
-                        </div>
-                        <div class="comment-item-date">
-                            2014년 5월 19일
-                        </div>
-                    </div>
-                </div>
-                <div class="t-item-comment-item">
-                    <div class="comment-item-user">
-                        <img src="{{MEDIA_URL}}res/img_test_profile_04.png">
-                    </div>
-                    <div class="comment-item-content">
-                        <div class="comment-item-paragraph">
-                            <b class="comment-item-username">Sunguard</b>
-                            정말 바른 말만 적어 놓으셨네요. 캬~!! 감탄 세 번하고 갑니다. ㅋㅋㅋㅋㅋㅋㅋ
-                        </div>
-                        <div class="comment-item-date">
-                            2014년 6월 13일
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="t-item-comments-more">
-                <button class="comment-item-more">코멘트 더보기</button>
-                <input type="text" placeholder="댓글을 입력하고 엔터를 치세요."></input>
-            </div>
-        </li>
-        <li class="trolling-item">
-            <div class="t-item-header">
-                <h3 class="t-item-user">
-                    <img src="{{MEDIA_URL}}res/img_test_profile_01.png"><span>CheolKung</span>
-                </h3>
-                <div class="t-item-date">2014년 4월 23일</div>
-                <button class="t-item-link">링크 복사</button>
-            </div>
-            <div class="t-item-content">
-                내용이 여기에 들어가게 되는데, 심규민 빨리 잡혀가야 되는데 왜 안 잡혀가냐. 이거 우리나라 이러다가 망하는 거 아닌가? 심히 걱정이 된다. ㅠㅠ
-                <button class="t-item-place">사랑관 4층 화장실</button>
-            </div>
-            <div class="t-item-interaction">
-                <button class="t-item-add-heart sel"><span>48명</span></button>
-                <button class="t-item-see-comment"><span>7명</span></button>
-            </div>
-            <div class="t-item-comments">
-                <div class="t-item-comment-item">
-                    <div class="comment-item-user">
-                        <img src="{{MEDIA_URL}}res/img_test_profile_02.png">
-                    </div>
-                    <div class="comment-item-content">
-                        <div class="comment-item-paragraph">
-                            <b class="comment-item-username">Sunguard</b>
-                            격하게 공감하는 바입니다!!!!
-                        </div>
-                        <div class="comment-item-date">
-                            2014년 5월 13일
-                        </div>
-                    </div>
-                </div>
-                <div class="t-item-comment-item">
-                    <div class="comment-item-user">
-                        <img src="{{MEDIA_URL}}res/img_test_profile_03.png">
-                    </div>
-                    <div class="comment-item-content">
-                        <div class="comment-item-paragraph">
-                            <b class="comment-item-username">가나다</b>
-                            대세는 심철컹철컹!
-                        </div>
-                        <div class="comment-item-date">
-                            2014년 5월 19일
-                        </div>
-                    </div>
-                </div>
-                <div class="t-item-comment-item">
-                    <div class="comment-item-user">
-                        <img src="{{MEDIA_URL}}res/img_test_profile_04.png">
-                    </div>
-                    <div class="comment-item-content">
-                        <div class="comment-item-paragraph">
-                            <b class="comment-item-username">Sunguard</b>
-                            정말 바른 말만 적어 놓으셨네요. 캬~!! 감탄 세 번하고 갑니다. ㅋㅋㅋㅋㅋㅋㅋ
-                        </div>
-                        <div class="comment-item-date">
-                            2014년 6월 13일
                         </div>
                     </div>
                 </div>
@@ -150,7 +58,7 @@
         </li>
     </ul>
     <ul class="trolling-list-right">
-        <li class="trolling-item">
+        <li class="trolling-item" data-ng-repeat="troll in trolls" ng-show="$even">
             <div class="t-item-header">
                 <h3 class="t-item-user">
                     <img src="{{MEDIA_URL}}res/img_test_profile_01.png"><span>CheolKung</span>
@@ -159,12 +67,12 @@
                 <button class="t-item-link">링크 복사</button>
             </div>
             <div class="t-item-content">
-                이거 우리나라 이러다가 망하는 거 아닌가? 심히 걱정이 된다. ㅠㅠ
+                [[troll.content]]
                 <button class="t-item-place">사랑관 4층 화장실</button>
             </div>
             <div class="t-item-interaction">
                 <button class="t-item-add-heart sel"><span>48명</span></button>
-                <button class="t-item-see-comment"><span>2명</span></button>
+                <button class="t-item-see-comment"><span>7명</span></button>
             </div>
             <div class="t-item-comments">
                 <div class="t-item-comment-item">
@@ -178,122 +86,6 @@
                         </div>
                         <div class="comment-item-date">
                             2014년 5월 13일
-                        </div>
-                    </div>
-                </div>
-                <div class="t-item-comment-item">
-                    <div class="comment-item-user">
-                        <img src="{{MEDIA_URL}}res/img_test_profile_03.png">
-                    </div>
-                    <div class="comment-item-content">
-                        <div class="comment-item-paragraph">
-                            <b class="comment-item-username">가나다</b>
-                            대세는 심철컹철컹!
-                        </div>
-                        <div class="comment-item-date">
-                            2014년 5월 19일
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="t-item-comments-more">
-                <button class="comment-item-more">코멘트 더보기</button>
-                <input type="text" placeholder="댓글을 입력하고 엔터를 치세요."></input>
-            </div>
-        </li>
-        <li class="trolling-item">
-            <div class="t-item-header">
-                <h3 class="t-item-user">
-                    <img src="{{MEDIA_URL}}res/img_test_profile_01.png"><span>CheolKung</span>
-                </h3>
-                <div class="t-item-date">2014년 4월 23일</div>
-                <button class="t-item-link">링크 복사</button>
-            </div>
-            <div class="t-item-content">
-                이거 우리나라 이러다가 망하는 거 아닌가? 심히 걱정이 된다. ㅠㅠ
-                <button class="t-item-place">사랑관 4층 화장실</button>
-            </div>
-            <div class="t-item-interaction">
-                <button class="t-item-add-heart sel"><span>48명</span></button>
-                <button class="t-item-see-comment"><span>2명</span></button>
-            </div>
-            <div class="t-item-comments">
-                <div class="t-item-comment-item">
-                    <div class="comment-item-user">
-                        <img src="{{MEDIA_URL}}res/img_test_profile_02.png">
-                    </div>
-                    <div class="comment-item-content">
-                        <div class="comment-item-paragraph">
-                            <b class="comment-item-username">Sunguard</b>
-                            격하게 공감하는 바입니다!!!!
-                        </div>
-                        <div class="comment-item-date">
-                            2014년 5월 13일
-                        </div>
-                    </div>
-                </div>
-                <div class="t-item-comment-item">
-                    <div class="comment-item-user">
-                        <img src="{{MEDIA_URL}}res/img_test_profile_03.png">
-                    </div>
-                    <div class="comment-item-content">
-                        <div class="comment-item-paragraph">
-                            <b class="comment-item-username">가나다</b>
-                            대세는 심철컹철컹!
-                        </div>
-                        <div class="comment-item-date">
-                            2014년 5월 19일
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="t-item-comments-more">
-                <button class="comment-item-more">코멘트 더보기</button>
-                <input type="text" placeholder="댓글을 입력하고 엔터를 치세요."></input>
-            </div>
-        </li>
-        <li class="trolling-item">
-            <div class="t-item-header">
-                <h3 class="t-item-user">
-                    <img src="{{MEDIA_URL}}res/img_test_profile_01.png"><span>CheolKung</span>
-                </h3>
-                <div class="t-item-date">2014년 4월 23일</div>
-                <button class="t-item-link">링크 복사</button>
-            </div>
-            <div class="t-item-content">
-                이거 우리나라 이러다가 망하는 거 아닌가? 심히 걱정이 된다. ㅠㅠ
-                <button class="t-item-place">사랑관 4층 화장실</button>
-            </div>
-            <div class="t-item-interaction">
-                <button class="t-item-add-heart sel"><span>48명</span></button>
-                <button class="t-item-see-comment"><span>2명</span></button>
-            </div>
-            <div class="t-item-comments">
-                <div class="t-item-comment-item">
-                    <div class="comment-item-user">
-                        <img src="{{MEDIA_URL}}res/img_test_profile_02.png">
-                    </div>
-                    <div class="comment-item-content">
-                        <div class="comment-item-paragraph">
-                            <b class="comment-item-username">Sunguard</b>
-                            격하게 공감하는 바입니다!!!!
-                        </div>
-                        <div class="comment-item-date">
-                            2014년 5월 13일
-                        </div>
-                    </div>
-                </div>
-                <div class="t-item-comment-item">
-                    <div class="comment-item-user">
-                        <img src="{{MEDIA_URL}}res/img_test_profile_03.png">
-                    </div>
-                    <div class="comment-item-content">
-                        <div class="comment-item-paragraph">
-                            <b class="comment-item-username">가나다</b>
-                            대세는 심철컹철컹!
-                        </div>
-                        <div class="comment-item-date">
-                            2014년 5월 19일
                         </div>
                     </div>
                 </div>
