@@ -36,7 +36,7 @@
                 <button class="t-item-see-comment"><span>7명</span></button>
             </div>
             <div class="t-item-comments">
-                <div class="t-item-comment-item">
+                <div class="t-item-comment-item" data-ng-repeat="report in troll.reports">
                     <div class="comment-item-user">
                         <img src="{{MEDIA_URL}}res/img_test_profile_02.png">
                     </div>
@@ -75,7 +75,7 @@
                 <button class="t-item-see-comment"><span>7명</span></button>
             </div>
             <div class="t-item-comments">
-                <div class="t-item-comment-item">
+                <div class="t-item-comment-item" data-ng-repeat="report in troll.reports">
                     <div class="comment-item-user">
                         <img src="{{MEDIA_URL}}res/img_test_profile_02.png">
                     </div>
