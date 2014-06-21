@@ -21,16 +21,16 @@
             <div class="popup-login" ng-show="isSigninOpen">
                 <h2 class="popup-login-title">환영합니다!</h2>
                 <label class="popup-login-label">아이디 :</label>
-                <input class="popup-login-field username"></input>
-                <label class="popup-login-label">비밀번호 : </label>
-                <input class="popup-login-field password"></input>
-                <button class="popup-login-submit">회원가입</button>
+                <input class="popup-login-field username" ng-model="newUsername"></input>
+                <label class="popup-login-label" >비밀번호 : </label>
+                <input class="popup-login-field password" type="password" ng-model="newPassword"></input>
+                <button class="popup-login-submit" ng-click="register_user()">회원가입</button>
             </div>
             <div class="popup-login" ng-show="isLoginOpen">
                 <h2 class="popup-login-title">환영합니다!</h2>
                 <label class="popup-login-label">아이디 :</label>
                 <input class="popup-login-field username" ng-model="username"></input>
-                <label class="popup-login-label">비밀번호 : </label>
+                <label class="popup-login-label" type="password" >비밀번호 : </label>
                 <input class="popup-login-field password" ng-model="password"></input>
                 <button class="popup-login-submit" ng-click="login()">로그인</button>
             </div>

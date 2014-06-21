@@ -79,6 +79,8 @@ angular.module('Troll', [])
             username: $scope.newUsername,
             password: $scope.newPassword
         }).success(function(data, status, headers, config) {
+            $scope.isSigninOpen = false;
+            $scope.get_user();
         }).error(function(data, status, headers, config) {
         });
     };
