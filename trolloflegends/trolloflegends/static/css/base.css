@@ -387,3 +387,7 @@ html{
 .popup-map{
     z-index:292;
 }
+
+.label {
+    text-anchor: middle;
+}
