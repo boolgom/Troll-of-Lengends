@@ -10,6 +10,8 @@ angular.module('Troll', [])
 
     $scope.username = '';
     $scope.password = '';
+    $scope.isLoginOpen = false;
+    $scope.isWriteOpen = false;
 
     $scope.init = function () {
         $scope.get_user();
@@ -20,11 +22,10 @@ angular.module('Troll', [])
         $http.post('/login/', {
             username: $scope.username,
             password: $scope.password
-        }).
-            success(function(data, status, headers, config) {
+        }).success(function(data, status, headers, config) {
             $scope.user = data;
-        }).
-            error(function(data, status, headers, config) {
+            $scope.isLoginOpen = false;
+        }).error(function(data, status, headers, config) {
         });
     };
 
@@ -32,9 +33,7 @@ angular.module('Troll', [])
         $http.get('/logout/').
             success(function(data, status, headers, config) {
             $scope.user = null;
-            console.log('a');
-        }).
-            error(function(data, status, headers, config) {
+        }).error(function(data, status, headers, config) {
         });
     };
 
@@ -43,8 +42,7 @@ angular.module('Troll', [])
             success(function(data, status, headers, config) {
             if (data.username)
                 $scope.user = data;
-        }).
-            error(function(data, status, headers, config) {
+        }).error(function(data, status, headers, config) {
         });
     };
 
@@ -52,32 +50,32 @@ angular.module('Troll', [])
         $http.post('/register/', {
             username: $scope.newUsername,
             password: $scope.newPassword
-        }).
-            success(function(data, status, headers, config) {
-        }).
-            error(function(data, status, headers, config) {
+        }).success(function(data, status, headers, config) {
+        }).error(function(data, status, headers, config) {
         });
     };
 
     $scope.upload = function () {
         $http.post('/write_trolling/', {
             content: $scope.content
-        }).
-            success(function(data, status, headers, config) {
-            alert('sucksexx!!!')
-        }).
-            error(function(data, status, headers, config) {
+        }).success(function(data, status, headers, config) {
+            $scope.isWriteOpen = false;
+        }).error(function(data, status, headers, config) {
         });
     };
 
     $scope.get_trollings = function () {
         $http.get('/get_trollings/'
-        ).
-            success(function(data, status, headers, config) {
+        ).success(function(data, status, headers, config) {
             $scope.trolls = data;
-        }).
-            error(function(data, status, headers, config) {
+        }).error(function(data, status, headers, config) {
         });
+    };
+
+    $scope.closeModal = function () {
+        $scope.isLoginOpen = false;
+        $scope.isWriteOpen = false;
+        $scope.isSigninOpen = false;
     };
 
 }]);

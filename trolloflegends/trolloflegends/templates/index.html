@@ -6,7 +6,7 @@
 <script type="text/javascript" src="{{STATIC_URL}}js/controller/index.js"></script>
 {% endblock%}
 {% block body %}
-<div data-ng-controller="IndexControl" data-ng-init="init()">
+<div >
     [[user.username]]
     <div ng-hide="user">
         <input ng-model="newUsername"></input>
