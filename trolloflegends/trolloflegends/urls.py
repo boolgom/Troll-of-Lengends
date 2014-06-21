@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^register/$', 'trolloflegends.apps.troll.views.register_user'),
     url(r'^getuser/$', 'trolloflegends.apps.troll.views.get_user'),
     url(r'^write_trolling/$', 'trolloflegends.apps.troll.views.write_trolling'),
+    url(r'^write_report/$', 'trolloflegends.apps.troll.views.write_report'),
     url(r'^get_trollings/$', 'trolloflegends.apps.troll.views.get_trollings'),
 
     # Media path

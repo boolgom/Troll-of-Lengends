@@ -79,10 +79,23 @@ def write_trolling(request):
     return HttpResponse("write trolling success")
 
 
+@login_required
+def write_report(request):
+    data = json.loads(request.body)
+    content = data['content']
+    trolling = data['trolling']
+    report = Report(
+        user=request.user,
+        content=content,
+        parent=Trolling.objects.get(id=trolling)
+    )
+    report.save()
+
+    return HttpResponse("write report success")
+
+
 def get_trollings(request):
     trolling_list = []
-    print trolling_list
-    print Trolling.objects.all()
     for trolling in Trolling.objects.all():
         trolling_obj = {
             'id': trolling.id,
@@ -112,6 +125,10 @@ def get_trollings(request):
 
     return HttpResponse(list_json)
 
+
+@login_required
+def register_vote(request):
+    pass
 
 # for testing front-end
 
