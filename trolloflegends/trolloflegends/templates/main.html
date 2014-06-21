@@ -22,9 +22,9 @@
         <li class="trolling-item" data-ng-repeat="troll in trolls" ng-show="$even">
             <div class="t-item-header">
                 <h3 class="t-item-user">
-                    <img src="{{MEDIA_URL}}res/img_test_profile_01.png"><span>CheolKung</span>
+                    <img src="{{MEDIA_URL}}res/img_test_profile_01.png"><span>[[troll.user]]</span>
                 </h3>
-                <div class="t-item-date">2014년 4월 23일</div>
+                <div class="t-item-date">[[troll.datetime]]</div>
                 <button class="t-item-link">링크 복사</button>
             </div>
             <div class="t-item-content">
@@ -61,9 +61,9 @@
         <li class="trolling-item" data-ng-repeat="troll in trolls" ng-show="$odd">
             <div class="t-item-header">
                 <h3 class="t-item-user">
-                    <img src="{{MEDIA_URL}}res/img_test_profile_01.png"><span>CheolKung</span>
+                    <img src="{{MEDIA_URL}}res/img_test_profile_01.png"><span>[[troll.user]]</span>
                 </h3>
-                <div class="t-item-date">2014년 4월 23일</div>
+                <div class="t-item-date">[[troll.datetime]]</div>
                 <button class="t-item-link">링크 복사</button>
             </div>
             <div class="t-item-content">
